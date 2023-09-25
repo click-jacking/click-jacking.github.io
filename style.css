@@ -4,9 +4,13 @@
     padding: 0;
     color: aliceblue;
 }
+a{
+    text-decoration: none;
+}
 body{
     background: #1b1b1b;
     color: aliceblue;
+    overflow-x: hidden;
 }
 .section{
     /* margin: 1rem; */
@@ -84,3 +88,15 @@ body{
   .none{
       display: none;
   }
+  .btn-ctner{
+      width: 90vw;
+      display: flex;
+      justify-content: right;
+      transform: translateY(40px);
+  }
+  @media screen and (max-width: 664px) {
+    .sec-frame iframe{
+        width: 80vw;
+        height: 80vh;
+    }
+    }

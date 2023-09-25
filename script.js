@@ -15,22 +15,21 @@ const getSessionStorageInputValue = () => {
 };
 
 const checkJack = () => {
-  shareBtn.classList.remove('none');
-
+  shareBtn.textContent = 'Share results';
   // Get the URL from the query parameter.
   url = new URLSearchParams(window.location.search).get('url');
-
+  
   // Check if the current URL has a query parameter
   if (url) {
     // Store the searched value in session storage
     const inputValue = inpt.value.trim();
     updateSessionStorage(inputValue);
-
+    
     // Remove the query parameter from the URL
     const currentURL = new URL(window.location.href);
     currentURL.searchParams.delete('url');
     history.pushState(null, '', currentURL.toString());
-
+    
     // Treat the session storage value as the URL
     url = getSessionStorageInputValue();
     inpt.value = url; // Populate the input field with the session storage value
@@ -38,8 +37,10 @@ const checkJack = () => {
     // If the URL parameter is not present, use the value of the `inpt` element.
     url = inpt.value.trim();
   }
-
+  
   if (url !== '') {
+    secFrame.innerHTML=''
+    shareBtn.classList.remove('none');
     const iframe = secFrame.querySelector('iframe');
     if (iframe) {
       iframe.src = url;
@@ -81,9 +82,6 @@ shareBtn.addEventListener('click', () => {
   shareBtn.textContent = 'Copied ✔';
 
   // Remove the copied tick after 2 seconds.
-  setTimeout(() => {
-    shareBtn.textContent = 'Share';
-  }, 3000);
 });
 
 checkBtn.addEventListener('click', checkJack);
