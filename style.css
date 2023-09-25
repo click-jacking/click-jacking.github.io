@@ -3,6 +3,7 @@
     margin: 0;
     padding: 0;
     color: aliceblue;
+    box-sizing: border-box;
 }
 a{
     text-decoration: none;
@@ -17,10 +18,13 @@ body{
     width: 100vw;
     max-width: 100%;
 }
-.section h1,h3{
+.section h1,h3,h4,h5{
         font-family: 'Roboto';
         text-align: center;
         
+    }
+    h1{
+        font-size: 2.5rem;
     }
     .navbar-brand span{
         padding-top: 1rem;
@@ -56,12 +60,12 @@ body{
     text-align: center;
 }
 .red{
-    color: #ef233c;
-    text-decoration: underline 4px #ef233c;
+    color: #d90429;
+    text-decoration: underline 4px #d90429;
 }
 .green{
     color: #c5ccc6;
-    text-decoration: underline 4px #80ed99;
+    text-decoration: underline 4px #b2dbbc;
 }
 .loading{
     display: flex;
@@ -85,6 +89,25 @@ body{
       background-color: #5a5a5a;
     }
   }
+@keyframes redBang {
+    0% {
+      color: #d90429;
+
+
+    }
+    25% {
+      color: #ba181b;
+    }
+    50% {
+      color: #c1121f;
+    }
+    75% {
+      color: #bf0603;
+    }
+    100% {
+      color: #c81d25;
+    }
+  }
   .none{
       display: none;
   }
@@ -100,3 +123,9 @@ body{
         height: 80vh;
     }
     }
+.info{
+    padding: 1.3rem;
+}
+.info h3{
+    text-align: left;
+} 
