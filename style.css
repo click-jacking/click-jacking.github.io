@@ -1,9 +1,17 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 4 version
+*/
+
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,700;1,900&display=swap');
 *{
     margin: 0;
     padding: 0;
     color: aliceblue;
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
 }
 a{
     text-decoration: none;
@@ -20,8 +28,7 @@ body{
 }
 .section h1,h3,h4,h5{
         font-family: 'Roboto';
-        text-align: center;
-        
+        text-align: center !important;
     }
     h1{
         font-size: 2.5rem;
@@ -35,6 +42,7 @@ body{
     max-width: 100%;
 }
 .sec-1{
+    display: -ms-grid;
     display: grid;
 }
 .mb-3{
@@ -45,8 +53,24 @@ body{
 .container-1{
     margin: 3rem 0;
     width: 100vw;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+}
+.input-group input::-webkit-input-placeholder {
+    color: rgb(121, 118, 118);
+}
+.input-group input::-moz-placeholder {
+    color: rgb(121, 118, 118);
+}
+.input-group input:-ms-input-placeholder {
+    color: rgb(121, 118, 118);
+}
+.input-group input::-ms-input-placeholder {
+    color: rgb(121, 118, 118);
 }
 .input-group input::placeholder {
     color: rgb(121, 118, 118);
@@ -61,17 +85,41 @@ body{
 }
 .red{
     color: #d90429;
-    text-decoration: underline 4px #d90429;
+    -webkit-text-decoration: underline 4px #d90429;
+            text-decoration: underline 4px #d90429;
 }
 .green{
     color: #c5ccc6;
-    text-decoration: underline 4px #b2dbbc;
+    -webkit-text-decoration: underline 4px #b2dbbc;
+            text-decoration: underline 4px #b2dbbc;
 }
 .loading{
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: center;
-    animation: skeleton 5s ease-in infinite;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-animation: skeleton 5s ease-in infinite;
+            animation: skeleton 5s ease-in infinite;
 }
+@-webkit-keyframes skeleton {
+    0% {
+      background-color: #5a5a5a;
+    }
+    25% {
+      background-color: #4a4a4a;
+    }
+    50% {
+      background-color: #3a3a3a;
+    }
+    75% {
+      background-color: #2a2a2a;
+    }
+    100% {
+      background-color: #5a5a5a;
+    }
+  }
 @keyframes skeleton {
     0% {
       background-color: #5a5a5a;
@@ -87,6 +135,25 @@ body{
     }
     100% {
       background-color: #5a5a5a;
+    }
+  }
+@-webkit-keyframes redBang {
+    0% {
+      color: #d90429;
+
+
+    }
+    25% {
+      color: #ba181b;
+    }
+    50% {
+      color: #c1121f;
+    }
+    75% {
+      color: #bf0603;
+    }
+    100% {
+      color: #c81d25;
     }
   }
 @keyframes redBang {
@@ -113,9 +180,15 @@ body{
   }
   .btn-ctner{
       width: 90vw;
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
-      justify-content: right;
-      transform: translateY(40px);
+      -webkit-box-pack: right;
+          -ms-flex-pack: right;
+              justify-content: right;
+      -webkit-transform: translateY(40px);
+          -ms-transform: translateY(40px);
+              transform: translateY(40px);
   }
   @media screen and (max-width: 664px) {
     .sec-frame iframe{

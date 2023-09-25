@@ -97,3 +97,11 @@ window.addEventListener('load', () => {
     checkJack();
   }
 });
+
+inpt.addEventListener('keyup', (event) => {
+  // Check if the Enter key (key code 13) is pressed
+  if (event.key === 'Enter') { // Use 'Enter' instead of 13
+    // Trigger a click on the button
+    checkBtn.click();
+  }
+});
