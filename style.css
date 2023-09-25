@@ -48,3 +48,39 @@ body{
     width: 80vw;
     height: 50vw;
 }
+#msg{
+    text-align: center;
+}
+.red{
+    color: #ef233c;
+    text-decoration: underline 4px #ef233c;
+}
+.green{
+    color: #c5ccc6;
+    text-decoration: underline 4px #80ed99;
+}
+.loading{
+    display: flex;
+    justify-content: center;
+    animation: skeleton 5s ease-in infinite;
+}
+@keyframes skeleton {
+    0% {
+      background-color: #5a5a5a;
+    }
+    25% {
+      background-color: #4a4a4a;
+    }
+    50% {
+      background-color: #3a3a3a;
+    }
+    75% {
+      background-color: #2a2a2a;
+    }
+    100% {
+      background-color: #5a5a5a;
+    }
+  }
+  .none{
+      display: none;
+  }
