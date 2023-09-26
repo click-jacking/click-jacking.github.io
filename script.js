@@ -115,7 +115,7 @@ function timeDate() {
 const fetchIPAddress = async (url) => {
   try {
     // Make an HTTP request to the IPify API to get the IP address
-    const response = await fetch('https://api.ipify.org/?format=json');
+    const response = await fetch(`https://api.ipify.org/?format=json&url=${encodeURIComponent(url)}`);
     const data = await response.json();
     const ipAddress = data.ip;
 

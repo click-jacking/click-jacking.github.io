@@ -1,0 +1,55 @@
+footer {
+  padding: 1rem;
+}
+
+footer .fHeading {
+  text-align: center;
+  font-weight: bold;
+  font-size: large;
+  margin: 1rem 0;
+}
+
+footer .fIcons {
+  margin: .5em 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 2rem;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+footer .fLinks {
+  margin: .5em 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100vw;
+  -webkit-box-pack: center !important;
+      -ms-flex-pack: center !important;
+          justify-content: center !important;
+  gap: 1.5rem;
+}
+
+footer .fLinks a {
+  color: whitesmoke;
+  -webkit-text-decoration: underline 2px white;
+          text-decoration: underline 2px white;
+}
+
+footer .fLinks a:hover {
+  color: lightgray;
+}
+
+#copyright {
+  width: 100vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+}
+/*# sourceMappingURL=footer.css.map */
