@@ -176,16 +176,16 @@ body{
     }
   }
   .none{
-      display: none;
+      display: none !important;
   }
   .btn-ctner{
-      width: 90vw;
+      width: 80vw;
       display: -webkit-box;
       display: -ms-flexbox;
       display: flex;
-      -webkit-box-pack: right;
-          -ms-flex-pack: right;
-              justify-content: right;
+      -webkit-box-pack: space-between;
+          -ms-flex-pack: space-between;
+              justify-content: space-between;
       -webkit-transform: translateY(40px);
           -ms-transform: translateY(40px);
               transform: translateY(40px);
@@ -202,3 +202,14 @@ body{
 .info h3{
     text-align: left;
 } 
+#resultsDiv h4{ 
+  text-align: left !important;
+ 
+}
+#resultsDiv{
+  padding: 1rem 0;
+ 
+}
+.testScroll{
+  color: whitesmoke;
+}
