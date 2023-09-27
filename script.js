@@ -46,8 +46,10 @@ const checkJack = () => {
     url = inpt.value.trim();
   }
   if (url !== '') {
+    shareBtn.classList.remove('none')
     resultsDiv.innerHTML = '';
     secFrame.innerHTML = '';
+    resultsDiv.innerHTML="<h3>Test results :</h3> <br>" 
     fetchIPAddress(url);
     timeDate();
     performCspHeaderTest(url)
@@ -62,6 +64,7 @@ const checkJack = () => {
 
     // Add a loading indicator.
     secFrame.classList.add('loading');
+    secFrame.classList.add('container-100');
   } else {
     alert('Enter a URL');
   }
@@ -110,7 +113,7 @@ function timeDate() {
   var formattedDate = currentDate.toUTCString();
 
   // Append the current date and time to the resultsDiv
-  resultsDiv.innerHTML += `<h4>Time: ${formattedDate}</h4>`;
+  resultsDiv.innerHTML += `<h6>Time: ${formattedDate}</h4>`;
 }
 const fetchIPAddress = async (url) => {
   try {
@@ -120,15 +123,15 @@ const fetchIPAddress = async (url) => {
     const ipAddress = data.ip;
 
     // Display the IP address in the resultsDiv
-    resultsDiv.innerHTML += `  <h4>IP Address: ${ipAddress} </h4>`;
+    resultsDiv.innerHTML += `  <h6>IP Address: ${ipAddress} </h4>`;
   } catch (error) {
     console.error('Error fetching IP address:', error);
 
     // Check if the error message contains the CSP violation message
     if (error.message.includes('frame-ancestors')) {
-      resultsDiv.innerHTML += '  <h4> IP Address: Not available due to CSP violation </h4>';
+      resultsDiv.innerHTML += '  <h6> IP Address: Not available due to CSP violation </h4>';
     } else {
-      resultsDiv.innerHTML += '  <h4>IP Address: Not available</h4>';
+      resultsDiv.innerHTML += '  <h6>IP Address: Not available</h4>';
     }
   }
 };
@@ -137,19 +140,19 @@ const fetchIPAddress = async (url) => {
 const performCspHeaderTest = async (testUrl) => {
   try {
     // Make an HTTP request to the URL to get the HTTP headers
-    const response = await fetch(testUrl, { method: 'HEAD' });
+    const response = await fetch(testUrl, { method: 'HEAD' })
     const headers = response.headers;
 
     // Check if the CSP Header value allows framing
     const cspHeader = headers.get('Content-Security-Policy');
     if (cspHeader.includes("frame-ancestors 'none'")) {
-      resultsDiv.innerHTML += ' <h4>CSP Header (Frame-Ancestors): Test Passed <img src="assets/green.png" alt="Test Passed" width="50"></h4>';
+      resultsDiv.innerHTML += ' <h6>CSP Header (Frame-Ancestors): Test Passed <img src="assets/green.png" alt="Test Passed" width="50"></h4>';
     } else {
-      resultsDiv.innerHTML += ' <h4>CSP Header (Frame-Ancestors): Test Failed <img src="assets/red (1).png" alt="Test Failed" width="50"></h4>';
+      resultsDiv.innerHTML += ' <h6>CSP Header (Frame-Ancestors): Test Failed <img src="assets/red (1).png" alt="Test Failed" width="50"></h4>';
     }
   } catch (error) {
     console.error('CSP Header test error:', error);
-    resultsDiv.innerHTML += ' <h4>CSP Header (Frame-Ancestors): Test Failed <img src="assets/red (1).png" alt="Test Failed" width="50"> </h4>';
+    resultsDiv.innerHTML += ' <h6>CSP Header (Frame-Ancestors): Test Failed <img src="assets/red (1).png" alt="Test Failed" width="50"> </h4>';
   }
 }
 
@@ -160,15 +163,15 @@ const performXFrameOptionsTest = async (testUrl) => {
     const response = await fetch(testUrl, { method: 'HEAD' });
     const headers = response.headers;
 
-    // Check if the X-Frame-Options header allows framing
-    const xFrameOptions = headers.get('X-Frame-Options');
-    if (!xFrameOptions || !xFrameOptions.includes('DENY') && !xFrameOptions.includes('SAMEORIGIN')) {
-      resultsDiv.innerHTML += ' <h4>X-Frame-Options: Test Passed <img src="assets/green.png" alt="Test Passed" width="50"></h4>';
+    // Check if the headers object is missing or if the X-Frame-Options header is missing or does not include DENY or SAMEORIGIN
+    if (!headers || !headers.has('X-Frame-Options') || (!headers.get('X-Frame-Options').includes('DENY') && !headers.get('X-Frame-Options').includes('SAMEORIGIN'))) {
+      resultsDiv.innerHTML += ' <h6>X-Frame-Options: Test Failed <img src="assets/red (1).png" alt="Test Failed" width="50"></h4>';
     } else {
-      resultsDiv.innerHTML += ` <h4>X-Frame-Options: Test Failed <img src="assets/red (1).png" alt="Test Failed" width="50"></h4>`;
+      resultsDiv.innerHTML += ' <h6>X-Frame-Options: Test Passed <img src="assets/green.png" alt="Test Passed" width="50"></h4>';
     }
   } catch (error) {
     console.error('X-Frame-Options test error:', error);
-    resultsDiv.innerHTML += ' <h4>X-Frame-Options: Test Failed <img src="assets/red (1).png" alt="Test Failed" width="50"></h4>';
+    // If there's an error during the fetch, treat it as a test failure
+    resultsDiv.innerHTML += ' <h6>X-Frame-Options: Test Failed <img src="assets/red (1).png" alt="Test Failed" width="50"></h4>';
   }
 }
