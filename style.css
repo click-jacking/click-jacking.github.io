@@ -6,6 +6,7 @@
 */
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,700;1,900&display=swap');
+
 *{
     margin: 0;
     padding: 0;
@@ -142,44 +143,6 @@ a{
       background-color: #5a5a5a;
     }
   }
-@-webkit-keyframes redBang {
-    0% {
-      color: #d90429;
-
-
-    }
-    25% {
-      color: #ba181b;
-    }
-    50% {
-      color: #c1121f;
-    }
-    75% {
-      color: #bf0603;
-    }
-    100% {
-      color: #c81d25;
-    }
-  }
-@keyframes redBang {
-    0% {
-      color: #d90429;
-
-
-    }
-    25% {
-      color: #ba181b;
-    }
-    50% {
-      color: #c1121f;
-    }
-    75% {
-      color: #bf0603;
-    }
-    100% {
-      color: #c81d25;
-    }
-  }
   .none{
       display: none !important;
   }
@@ -192,9 +155,18 @@ a{
               justify-content: right;
   }
   @media screen and (max-width: 664px) {
+    .sec-con{
+      width: 100vw !important;
+      display: grid !important;
+      justify-content: center !important;
+    }
     .sec-frame iframe{
         width: 70vw;
-        height: 80vh;
+        height: 100vh;
+    }
+    .sec-frame{
+      display: flex;
+      justify-content: center;
     }
     }
 .info{

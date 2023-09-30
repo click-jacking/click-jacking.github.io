@@ -3,6 +3,12 @@ const checkBtn = document.getElementById('button-addon2');
 const secFrame = document.getElementById('sec-frame');
 const shareBtn = document.getElementById('share-btn');
 const resultsDiv = document.getElementById('resultsDiv');
+const resultsDivElems = {
+  time: document.getElementById('resultTime'),
+  ip: document.getElementById('resultIp'),
+  xFrame: document.getElementById('resultX-frame'),
+  Csp: document.getElementById('resultAsp')
+}
 var url;
 
 window.addEventListener('load', () => {
@@ -24,51 +30,56 @@ const getSessionStorageInputValue = () => {
 };
 
 const checkJack = () => {
-  resultsDiv.innerHTML = '';
   shareBtn.textContent = 'Share results';
-  // Get the URL from the query parameter.
-  url = new URLSearchParams(window.location.search).get('url');
-  // Check if the current URL has a query parameter
-  if (url) {
-    // Store the searched value in session storage
-    const inputValue = inpt.value.trim();
-    updateSessionStorage(inputValue);
-    // Remove the query parameter from the URL
-    const currentURL = new URL(window.location.href);
-    currentURL.searchParams.delete('url');
-    history.pushState(null, '', currentURL.toString());
 
-    // Treat the session storage value as the URL
-    url = getSessionStorageInputValue();
-    inpt.value = url;
-  } else {
-    // If the URL parameter is not present, use the value of the `inpt` element.
-    url = inpt.value.trim();
+  // Get the URL from the query parameter or the input field.
+  let url = new URLSearchParams(window.location.search).get('url') || inpt.value.trim();
+
+  // Use a regular expression to validate the URL format
+  const urlRegex = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w.-]*)*\/?$/;
+  if (!urlRegex.test(url)) {
+    // Alert the user if the URL is not valid
+    alert('Invalid URL. Please enter a valid URL.');
+    return; // Exit the function early
   }
+
+  // Store the searched value in session storage
+  updateSessionStorage(url);
+
+  // Remove the query parameter from the URL (if it exists)
+  const currentURL = new URL(window.location.href);
+  currentURL.searchParams.delete('url');
+  history.pushState(null, '', currentURL.toString());
+
+  // Display the URL in the input field
+  inpt.value = url;
+
   if (url !== '') {
-    shareBtn.classList.remove('none')
-    resultsDiv.innerHTML = '';
+    resultsDiv.classList.remove('none');
+    shareBtn.classList.remove('none');
     secFrame.innerHTML = '';
-    resultsDiv.innerHTML="<h3>Test results :</h3> <br>" 
     fetchIPAddress(url);
     timeDate();
-    performCspHeaderTest(url)
-    performXFrameOptionsTest(url)
-    document.getElementById('results').classList.remove('none');
+    performCspHeaderTest(url);
+    performXFrameOptionsTest(url);
     const iframe = secFrame.querySelector('iframe');
     if (iframe) {
-      iframe.src = url;
+      secFrame.innerHTML = `<iframe src="${url}" id="frame" frameborder="0"></iframe>`;
     } else {
-      secFrame.innerHTML = `<iframe src="${url}" frameborder="0"></iframe>`;
+      secFrame.innerHTML = `<iframe src="${url}" id="frame" frameborder="0"></iframe>`;
     }
 
     // Add a loading indicator.
     secFrame.classList.add('loading');
     secFrame.classList.add('container-100');
+    document.getElementById('frame').onload = function () {
+      secFrame.classList.remove('loading');
+    }; // before setting 'src'
   } else {
     alert('Enter a URL');
   }
 };
+
 
 //share functionality
 shareBtn.addEventListener('click', () => {
@@ -97,7 +108,6 @@ shareBtn.addEventListener('click', () => {
 checkBtn.addEventListener('click', checkJack);
 
 // Add this code to handle the query parameter on page load
-;
 
 inpt.addEventListener('keyup', (event) => {
   // Check if the Enter key (key code 13) is pressed
@@ -111,9 +121,8 @@ inpt.addEventListener('keyup', (event) => {
 function timeDate() {
   const currentDate = new Date();
   var formattedDate = currentDate.toUTCString();
+  resultsDivElems.time.innerHTML = formattedDate
 
-  // Append the current date and time to the resultsDiv
-  resultsDiv.innerHTML += `<h6>Time: ${formattedDate}</h4>`;
 }
 const fetchIPAddress = async (url) => {
   try {
@@ -123,38 +132,19 @@ const fetchIPAddress = async (url) => {
     const ipAddress = data.ip;
 
     // Display the IP address in the resultsDiv
-    resultsDiv.innerHTML += `  <h6>IP Address: ${ipAddress} </h4>`;
+    resultsDivElems.ip.innerHTML = ipAddress
   } catch (error) {
     console.error('Error fetching IP address:', error);
 
     // Check if the error message contains the CSP violation message
     if (error.message.includes('frame-ancestors')) {
-      resultsDiv.innerHTML += '  <h6> IP Address: Not available due to CSP violation </h4>';
+    resultsDivElems.ip.innerHTML = `Not available due to CSP violation`
     } else {
-      resultsDiv.innerHTML += '  <h6>IP Address: Not available</h4>';
+    resultsDivElems.ip.innerHTML = ` Not available`
     }
   }
 };
 
-// Function to perform the CSP Header (Frame-Ancestors) test
-const performCspHeaderTest = async (testUrl) => {
-  try {
-    // Make an HTTP request to the URL to get the HTTP headers
-    const response = await fetch(testUrl, { method: 'HEAD' })
-    const headers = response.headers;
-
-    // Check if the CSP Header value allows framing
-    const cspHeader = headers.get('Content-Security-Policy');
-    if (cspHeader.includes("frame-ancestors 'none'")) {
-      resultsDiv.innerHTML += ' <h6>CSP Header (Frame-Ancestors): Test Passed <img src="assets/green.png" alt="Test Passed" width="50"></h4>';
-    } else {
-      resultsDiv.innerHTML += ' <h6>CSP Header (Frame-Ancestors): Test Failed <img src="assets/red (1).png" alt="Test Failed" width="50"></h4>';
-    }
-  } catch (error) {
-    console.error('CSP Header test error:', error);
-    resultsDiv.innerHTML += ' <h6>CSP Header (Frame-Ancestors): Test Failed <img src="assets/red (1).png" alt="Test Failed" width="50"> </h4>';
-  }
-}
 
 // Function to perform the X-Frame-Options test
 const performXFrameOptionsTest = async (testUrl) => {
@@ -162,16 +152,35 @@ const performXFrameOptionsTest = async (testUrl) => {
     // Make an HTTP request to the URL to get the HTTP headers
     const response = await fetch(testUrl, { method: 'HEAD' });
     const headers = response.headers;
-
+    
     // Check if the headers object is missing or if the X-Frame-Options header is missing or does not include DENY or SAMEORIGIN
     if (!headers || !headers.has('X-Frame-Options') || (!headers.get('X-Frame-Options').includes('DENY') && !headers.get('X-Frame-Options').includes('SAMEORIGIN'))) {
-      resultsDiv.innerHTML += ' <h6>X-Frame-Options: Test Failed <img src="assets/red (1).png" alt="Test Failed" width="50"></h4>';
+      resultsDivElems.xFrame.innerHTML = `Test Failed <img src="assets/red (1).png" alt="Test Failed" width="50">`
     } else {
-      resultsDiv.innerHTML += ' <h6>X-Frame-Options: Test Passed <img src="assets/green.png" alt="Test Passed" width="50"></h4>';
+      resultsDivElems.xFrame.innerHTML = 'Test Passed <img src="assets/green.png" alt="Test Passed" width="50">'
     }
   } catch (error) {
     console.error('X-Frame-Options test error:', error);
     // If there's an error during the fetch, treat it as a test failure
-    resultsDiv.innerHTML += ' <h6>X-Frame-Options: Test Failed <img src="assets/red (1).png" alt="Test Failed" width="50"></h4>';
+    resultsDivElems.xFrame.innerHTML = `Test Failed <img src="assets/red (1).png" alt="Test Failed" width="50">`
   }
 }
+  // Function to perform the CSP Header (Frame-Ancestors) test
+  const performCspHeaderTest = async (testUrl) => {
+    try {
+      // Make an HTTP request to the URL to get the HTTP headers
+      const response = await fetch(testUrl, { method: 'HEAD' })
+      const headers = response.headers;
+  
+      // Check if the CSP Header value allows framing
+      const cspHeader = headers.get('Content-Security-Policy');
+      if (cspHeader.includes("frame-ancestors 'none'")) {
+        resultsDivElems.Csp.innerHTML= `Test Passed <img src="assets/green.png" alt="Test Passed" width="50">`
+      } else {
+        resultsDivElems.Csp.innerHTML= 'Test Failed <img src="assets/red (1).png" alt="Test Failed" width="50">';
+      }
+    } catch (error) {
+      console.error('CSP Header test error:', error);
+      resultsDivElems.Csp.innerHTML= 'Test Failed <img src="assets/red (1).png" alt="Test Failed" width="50">';
+    }
+  }

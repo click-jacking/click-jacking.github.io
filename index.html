@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <!-- adsense -->
+  <head>
+    <!-- adsense -->
+    <title>Clickjacker Tool | Test | Clickjacking Tester</title>
+    <meta name="keywords" content="Test Clickjacking, Online clickjacking test, Clickjacking tool, What is clickjacking, Fix clickjacking, Clickjacking vulnerability, Exploit clickjacking"/>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9344372779596610"
      crossorigin="anonymous"></script>
+
      <meta property="og:image" content=""/>
     <link rel="icon" href="https://i.ibb.co/CVZQ8Bt/Picsart-23-09-26-02-16-00-213.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="description" content="Test for clickjacking vulnerabilities. Secure your web applications.">
-    <title>Click Jacking Tester</title>
     <!-- bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -20,8 +22,7 @@
     <link rel="stylesheet" href="footer.css">
     <!-- social sharing -->
     <meta property="og:title" content="Clickjacking Tester">
-    <meta name="keywords" content="Test Clickjacking, Online clickjacking test, Clickjacking tool, What is clickjacking, Fix clickjacking, Clickjacking vulnerability, Exploit clickjacking"/>
-    <meta property="og:description" content="Test for clickjacking vulnerabilities. Secure your web applications.">
+    <meta property="og:description" content="Test for clickjacking vulnerabilities. Secure your web applications, take screenshot, share results, test HTTP and HTTPS headers.">
     <meta property="og:image" content="https://i.ibb.co/2nsccvQ/Black-White-Elegant-Phone-Review-Blog-Banner.png">
     <meta property="og:url" content="https://click-jacking.github.io/">
     <meta property="og:type" content="website">
@@ -29,10 +30,10 @@
 <body>
     <nav class="navbar navbar-dark bg-dark" style="background-color: #1b1b1b !important;">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">
+          <a class="navbar-brand" href="index.html">
             <img 
             src="https://i.ibb.co/CVZQ8Bt/Picsart-23-09-26-02-16-00-213.png alt="Logo" width="50" height="50" class="d-inline-block align-text-top">
-            <span >Click Jacking Tester</span>
+            <span class="navHeading">Click Jacking Tester</span>
           </a>
         </div>
       </nav>
@@ -60,8 +61,14 @@
         <div class="sec-frame" id="sec-frame">
         </div>
         <div class="container-1">
-          <div id="resultsDiv">
-            
+          <div id="resultsDiv" class="none">
+            <h2>Test results :</h2>
+            <br>
+            <hr>
+            <h5>Time: <span id="resultTime"></span></h5> <hr>
+            <h5>X Frame: <span id="resultX-frame"></span></h5> <hr>
+            <h5>Csp Header: <span id="resultAsp"></span></h5> <hr>
+            <h5>Ip: <span id="resultIp"></span></h5> <hr>
           </div>
           <div class="btn-ctner none" id="results">
               </div>
