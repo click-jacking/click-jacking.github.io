@@ -10,6 +10,7 @@ const resultsDivElems = {
   Csp: document.getElementById('resultAsp')
 }
 var url;
+
 window.addEventListener('load', () => {
   const urlParam = new URLSearchParams(window.location.search).get('url');
   if (urlParam) {
@@ -65,7 +66,7 @@ const checkJack = () => {
   }
 };
 shareBtn.addEventListener('click', () => {
-  const currentURL = new UL(window.location.href);
+  const currentURL = new URL(window.location.href);
   const inputValue = inpt.value.trim();
   if (currentURL.searchParams.has('url')) {
     navigator.clipboard.writeText(currentURL.toString());
