@@ -83,15 +83,9 @@ a{
     text-align: center;
 }
 .red{
-    color: #d90429;
-    -webkit-text-decoration: underline 4px #d90429;
-            text-decoration: underline 4px #d90429;
+    color: #e5383b;
 }
-.green{
-    color: #c5ccc6;
-    -webkit-text-decoration: underline 4px #b2dbbc;
-            text-decoration: underline 4px #b2dbbc;
-}
+
 .loading{
     display: -webkit-box;
     display: -ms-flexbox;
@@ -102,23 +96,6 @@ a{
     -webkit-animation: skeleton 5s ease-in infinite;
             animation: skeleton 5s ease-in infinite;
 }
-@-webkit-keyframes skeleton {
-    0% {
-      background-color: #5a5a5a;
-    }
-    25% {
-      background-color: #4a4a4a;
-    }
-    50% {
-      background-color: #3a3a3a;
-    }
-    75% {
-      background-color: #2a2a2a;
-    }
-    100% {
-      background-color: #5a5a5a;
-    }
-  }
 @keyframes skeleton {
     0% {
       background-color: #5a5a5a;
@@ -154,12 +131,15 @@ a{
       justify-content: center !important;
     }
     .sec-frame iframe{
-        width: 70vw;
+        width: 90vw;
         height: 100vh;
     }
     .sec-frame{
       display: flex;
       justify-content: center;
+    }
+    .btn-shr{
+      margin: 1rem 0;
     }
     }
 .info{
@@ -189,4 +169,7 @@ h5,h3{
 }
 .container-100{
   min-height: 100vh;
+}
+.center{
+  text-align: center !important;
 }

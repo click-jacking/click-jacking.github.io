@@ -14,10 +14,7 @@ body{
     color: aliceblue;
     overflow-x: hidden;
 }
-a{
-    text-decoration: none;
 
-}
 .cnt{
     display: flex;
 }
@@ -60,11 +57,14 @@ pre.code {
     overflow: auto;
     
 }
+*::selection{
+    background: rgb(105, 105, 105) !important;
+}
 body, h2, p, li, code {
     text-shadow: none !important;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 840px) {
     .sidebar,.box{
         display: none;
     }
@@ -75,8 +75,11 @@ body, h2, p, li, code {
 .white{
     color: whitesmoke !important;
 }
+.sidebar{
+    background: #1a1a1a;
+}
 .sidebar a{
-    text-decoration: none;
+    text-decoration: none !important;
 }
 .box img{
     width: 17rem;
@@ -86,4 +89,14 @@ body, h2, p, li, code {
 }
 code,pre{
     color: whitesmoke !important;
+}
+.number{
+    list-style-type: "→  "
+}
+.glink{
+    text-decoration: none;
+    color: #80ed99 !important;
+    -webkit-text-decoration: underline 1.5px #80ed99;
+            text-decoration: underline 1.5px #80ed99;
+            text-underline-offset: 3px;
 }

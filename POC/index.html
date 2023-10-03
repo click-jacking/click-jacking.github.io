@@ -2,16 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Whats Click jacking || Learn about Click Jacking under 5 mins</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,">
+    <title> BEST Royalty-Free ClickJacking POC | Proof of concept </title>
+    <link rel="icon" href="https://i.ibb.co/CVZQ8Bt/Picsart-23-09-26-02-16-00-213.png">
     <meta name="keywords" content="Test Clickjacking, Online clickjacking test, Clickjacking tool, What is clickjacking, Fix clickjacking, Clickjacking
-    vulnerability, Exploit clickjacking"/>
+    vulnerability, Exploit clickjacking, ClickJacking POC"/>
 
-    <link rel="stylesheet" href="../footer.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../stylsheets/footer.css">
+    <link rel="stylesheet" href="../stylsheets/article.css">
 
-    <meta name="description" content="What is Clickjacking? Learn about clickjacking attacks under 5 mins for completely FREE, along with a  FREE Click jacking Tester Tool.">
+    <meta name="description" content="Get a copyright free click-jacking test proof of concept (POC), that you can copy paste whether you're a security expert or adming, you can also test your website for click-jacking">
     <!-- google font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,10 +24,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <!-- social sharing -->
-    <meta property="og:title" content="Learn about click jacking attacks, what is click jacking / UI redressing? learn in the most modren way, 2023, test your site for click jacking vulnerabilities">
-    <meta property="og:description" content="Test for clickjacking vulnerabilities. Secure your web applications, take screenshot, share results, test HTTP and HTTPS headers.">
+    <meta property="og:title" content="Copyright ClickJacking Proof of concept (POC)">
+    <meta property="og:description" content="Get a copyright free click-jacking proof of concept (POC), that you can copy paste whether you're a security expert or adming, you can also test your website for click-jacking">
 
-    <meta property="og:image" content="https://i.ibb.co/YhPxn4G/jacking.webp">
+    <meta property="og:image" content="https://i.ibb.co/375WDqR/a-2d-illustration-of-a-clickjacking-attack-on-a-website-professional-2-Nqdb-Q7y-upscaled-1.webp">
 
     <meta property="og:url" content="https://clickjacker.live">
     <meta property="og:type" content="website">
@@ -46,33 +46,33 @@
 
     <div class="cnt">
         <div class="txt">
-        <h2>Clickjacking / UI redressing</h2>
+        <h2>Clickjacking Test POC</h2>
 
-        <p>In this article we will discuss about -
-                <li><a href="#whats-ClickJacking">
-                    What is clickjacking?
+        <p>Today in this article we'll share one of the BEST Click-Jacking Proof of Concept (POC), It consists of copyright-free text and code that can be used  as a reference for making standard clickjacking POC: - 
+                <li><a class="glink" href="#pre-steps">
+                    Pre steps
                 </a></li>
-                <li><a href="#basic-clickjacking-attack">
-                    Making a basic clickjacking attack
+                <li><a class="glink" href="#code-proof">
+                    Code Proof (CP)
                 </a></li>
         </p>
 
-        <h2 id="whats-ClickJacking">What is click-jacking?</h2>
+        <h2 id="pre-steps">Pre steps</h2>
 
-        <p>ClickJacking is a UI-based attack in which the user is fooled into clicking on functional content from some other website hidden by the attacker. here's an example: 
+        <p> Before letting anyone know about this threat/loophole first test it well, here are steps you can take to test any website for click-jacking vulnerabilities -
             <br> <br>
-            Imagine, you're searching for a website to help with your homework
-            You click on what seems like a helpful resource, and when clicked it secretly posts a promotional message on your social media profile without even letting you know about it, this deceptive tactic is known as a clickjacking attack.
+            <li class="number">Go to <a class="glink" href="../index.html">click jacking-tester</a></li>
+            <li class="number">Input the target URL in there</li>
+            <li class="number">Click "check" button or hit enter</li>
+            <li class="number">Wait and see if the website loads in "iFrame"</li>
+            <p>If it doesn't load, then it's safe from <a class="glink" href="../Whats-clickjacking">Click Jacking</a>, but if it does load in iFrame then it's vulnerable to <a class="glink" href="../Whats-clickjacking">Click Jacking.</a></p>
+            <li class="number">Grab the "result-URL" of the vulnerable website by clicking the "share results" button </li>
         </p>
         <div class="img">
-            <img src="../assets/jacking.webp" width="90%" alt="">
+            <img src="../assets/cop.webp" width="90%" alt="copyright free click jacking COP">
         </div>
 
-        <h2 id="basic-clickjacking-attack">Making a basic clickjacking attack</h2>
-        <p>Most of the attackers use CSS to stack layers up on another layer loaded in an iframe, which tricks a user into clicking the iframe hidden beneath.
-        Here's a demo of click-jacking Attack
-
-        </p>
+        <h2 id="code-proof">Code Proof</h2>
         
         <pre class="code">
             <code class="html">
@@ -103,17 +103,24 @@
 &lt;/body&gt;
 &lt;/html&gt;
 </code>
-</pre>
-Hope you found this helpful !
+        </pre>
+        <li class="number">
+          Replace the "https://example" with your URL
+        </li> <br>
+        <p>
+          Hope you found this helpful!
+          If you want to test your site's security against clickjacking attacks or you want to make sure that your site isn't at risk,
+          you can check that here - <a class="glink" href="../index.html">2023 FREE Click Jacking tester</a> 
+        </p>
     </div>
 
         <div class="sidebar">
           <a href="../index.html">
             <div class="box">
-                <img src="../assets/tester.webp" alt="">
+                <img src="../assets/tester.webp" alt="free click jacking tester 2023">
                 <hr>
                 <h6>
-                  Test you site for click Jacking vulnerabilities.
+                  Test your site for click Jacking vulnerabilities.
                 </h6>
             </div>
           </a>
@@ -121,6 +128,7 @@ Hope you found this helpful !
     </div>
 
     <footer>
+      <hr>
         <div class="fHead">
           <h3 class="fHeading">
             Click Jacking Tester
@@ -152,8 +160,8 @@ Hope you found this helpful !
             </div>
           </div>
 <div class="fLinks">
-  <a href="../other/privacy-policy.html">Privacy Policy</a>
-  <a href="../other/about-us.html">About us</a>
+  <a href="../Privacy-policy">Privacy Policy</a>
+  <a href="../About-us">About us</a>
   <a href="mailto:click.jacking.tester@gmail.com"  target="_blank">Contact us</a>
 </div>
 <div id="copyright">&#169; Copyright</div>

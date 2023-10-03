@@ -3,6 +3,7 @@ const checkBtn = document.getElementById('button-addon2');
 const secFrame = document.getElementById('sec-frame');
 const shareBtn = document.getElementById('share-btn');
 const resultsDiv = document.getElementById('resultsDiv');
+const vlnTxt = document.getElementById('vlnTxt')
 const resultsDivElems = {
   time: document.getElementById('resultTime'),
   ip: document.getElementById('resultIp'),
@@ -45,6 +46,7 @@ const checkJack = () => {
     url = inpt.value.trim();
   }
   if (url !== '') {
+    vlnTxt.classList.remove('none')
     resultsDiv.classList.remove('none')
     shareBtn.classList.remove('none')
     secFrame.innerHTML = '';
