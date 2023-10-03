@@ -96,7 +96,7 @@ code,pre{
 .glink{
     text-decoration: none;
     color: #80ed99 !important;
-    -webkit-text-decoration: underline 1.5px #80ed99;
-            text-decoration: underline 1.5px #80ed99;
-            text-underline-offset: 3px;
+    -webkit-text-decoration: underline 1.5px #80ed99 !important;
+            text-decoration: underline 1.5px #80ed99 !important;
+            text-underline-offset: 3px !important;
 }
