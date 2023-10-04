@@ -28,32 +28,20 @@ const getSessionStorageInputValue = () => {
 };
 const checkJack = () => {
   shareBtn.textContent = 'Share results';
-  url = new URLSearchParams(window.location.search).get('url');
-  const urlRegex = /^(https?:\/\/)?([\w.-]+)(\/[^\s]*)?$/;
-  if (!urlRegex.test(url)) {
-    alert('Invalid URL. Please enter a valid URL.');
-    return;
-  }
-  if (url) {
-    const inputValue = inpt.value.trim();
-    updateSessionStorage(inputValue);
-    const currentURL = new URL(window.location.href);
-    currentURL.searchParams.delete('url');
-    history.pushState(null, '', currentURL.toString());
-    url = getSessionStorageInputValue();
-    inpt.value = url;
-  } else {
-    url = inpt.value.trim();
-  }
+  const inputValue = inpt.value.trim();
+
+  // Ensure the URL is clean without URL encoding
+  url = inputValue;
+
   if (url !== '') {
-    vlnTxt.classList.remove('none')
-    resultsDiv.classList.remove('none')
-    shareBtn.classList.remove('none')
+    vlnTxt.classList.remove('none');
+    resultsDiv.classList.remove('none');
+    shareBtn.classList.remove('none');
     secFrame.innerHTML = '';
     fetchIPAddress(url);
     timeDate();
-    performCspHeaderTest(url)
-    performXFrameOptionsTest(url)
+    performCspHeaderTest(url);
+    performXFrameOptionsTest(url);
     const iframe = secFrame.querySelector('iframe');
     if (iframe) {
       secFrame.innerHTML = `<iframe src="${url}" id="frame" frameborder="0"></iframe>`;
@@ -62,12 +50,23 @@ const checkJack = () => {
     }
     secFrame.classList.add('loading');
     secFrame.classList.add('container-100');
-    document.getElementById('frame').onload = function() {secFrame.classList.remove('loading') }; // before setting 'src'
+
+        // Remove trailing slashes and convert to lowercase
+    const cleanURL = (window.location.origin + window.location.pathname + '?url=' + url).toLowerCase().replace(/\/+$/, '');
+    history.pushState(null, '', cleanURL);
+
+
+    document.getElementById('frame').onload = function () {
+      secFrame.classList.remove('loading');
+    };
   } else {
     alert('Enter a URL');
   }
 };
+
+
 shareBtn.addEventListener('click', () => {
+  shareBtn.textContent = 'Copied ✔';
   const currentURL = new URL(window.location.href);
   const inputValue = inpt.value.trim();
   if (currentURL.searchParams.has('url')) {
@@ -77,7 +76,6 @@ shareBtn.addEventListener('click', () => {
     navigator.clipboard.writeText(currentURL.toString());
     updateSessionStorage(inputValue);
   }
-  shareBtn.textContent = 'Copied ✔';
 });
 checkBtn.addEventListener('click', checkJack);
 inpt.addEventListener('keyup', (event) => {
@@ -120,7 +118,7 @@ const performCspHeaderTest = async (testUrl) => {
     const corsProxyUrl = 'https://cors-anywhere.herokuapp.com/';
     const response = await fetch(corsProxyUrl + testUrl, { method: 'HEAD' });
     const headers = response.headers;
-     const cspHeader = headers.get('Content-Security-Policy');
+    const cspHeader = headers.get('Content-Security-Policy');
     if (cspHeader.includes("frame-ancestors 'self'")) {
       resultsDivElems.Csp.innerHTML = `Test Passed <img src="assets/green.webp" alt="Test Passed" width="50">`
     } else {

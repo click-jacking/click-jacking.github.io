@@ -67,12 +67,9 @@ body.toggle .grid * {
     justify-content: space-around;
     flex-wrap: wrap;
     display: flex;
-    /* gap: 1rem; */
     margin-right: 5rem;
 }
 .card {
-    margin: 1rem;
-    /* min-width: 13rem; */
     max-width: 30vw;
     width: 18rem;
     background-color: var(--background-color);
@@ -83,30 +80,7 @@ body.toggle .grid * {
     position: relative;
     transition: box-shadow 0.25s;
 }
-.card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: 15px;
-    background-color: var(--card-background-color);
-}
-.card .icon {
-    width: 1rem;
-    z-index: 2;
-    position: relative;
-    display: table;
-    padding: 8px;
-}
-.card .icon::after {
-    content: '';
-    position: absolute;
-    inset: 4.5px;
-    border-radius: 50%;
-    background-color: var(--card-icon-background-color);
-    border: 1px solid var(--card-icon-border-color);
-    backdrop-filter: blur(2px);
-    transition: background-color 0.25s, border-color 0.25s;
-}
+
 .card .icon svg {
     position: relative;
     z-index: 1;
