@@ -29,10 +29,8 @@ const getSessionStorageInputValue = () => {
 const checkJack = () => {
   shareBtn.textContent = 'Share results';
   const inputValue = inpt.value.trim();
-
   // Ensure the URL is clean without URL encoding
   url = inputValue;
-
   if (url !== '') {
     vlnTxt.classList.remove('none');
     resultsDiv.classList.remove('none');
