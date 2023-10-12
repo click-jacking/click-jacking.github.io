@@ -63,18 +63,21 @@ const checkJack = () => {
 };
 
 
-shareBtn.addEventListener('click', () => {
-  shareBtn.textContent = 'Copied ✔';
-  const currentURL = new URL(window.location.href);
-  const inputValue = inpt.value.trim();
-  if (currentURL.searchParams.has('url')) {
-    navigator.clipboard.writeText(currentURL.toString());
-  } else {
+shareBtn.addEventListener('click', async () => {
+  shareBtn.textContent = 'Copying...';
+  try {
+    await navigator.clipboard.writeText(''); // Empty write to trigger permission prompt
+    const currentURL = new URL(window.location.href);
+    const inputValue = inpt.value.trim();
     currentURL.searchParams.set('url', inputValue);
-    navigator.clipboard.writeText(currentURL.toString());
-    updateSessionStorage(inputValue);
+    await navigator.clipboard.writeText(currentURL.toString());
+    shareBtn.textContent = 'Copied ✔';
+  } catch (error) {
+    console.error('Failed to copy URL: ', error);
+    shareBtn.textContent = 'Copy Failed';
   }
 });
+
 checkBtn.addEventListener('click', checkJack);
 inpt.addEventListener('keyup', (event) => {
   if (event.key === 'Enter') {
