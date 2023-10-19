@@ -93,10 +93,21 @@ code,pre{
 .number{
     list-style-type: "→  "
 }
-.glink{
+.glink:hover{
     text-decoration: none;
     color: #80ed99 !important;
     -webkit-text-decoration: underline 1.5px #80ed99 !important;
             text-decoration: underline 1.5px #80ed99 !important;
-            text-underline-offset: 3px !important;
+            text-underline-offset: 5px !important;
+}
+.glink{
+    transition: all .2s ease-in;
+    text-decoration: none;
+    color: #74c69d !important;
+    -webkit-text-decoration: underline 1.5px #74c69d !important;
+    text-decoration: underline 1.5px #74c69d !important;
+    text-underline-offset: 2px !important;
+}
+.landscape{
+    aspect-ratio: 16/9;
 }

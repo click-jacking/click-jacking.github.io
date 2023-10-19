@@ -12,10 +12,6 @@
     <link rel="stylesheet" href="../stylsheets/article.css">
 
     <meta name="description" content="Learn about whats click-jacking, with example, a code for clickjacking example as well as how its made.">
-
-    <!-- ajax js -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.27.0/themes/prism.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/styles/dark.min.css">
     <!-- bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -47,69 +43,64 @@
     <div class="cnt">
         <div class="txt">
           <hr>
-        <h2>Clickjacking / UI redressing</h2>
+        <h2>Click jacker tool guide </h2>
 
         <p>In this article we will discuss -
-          <li><a class="glink" href="#whats-ClickJacking">
-              What is clickjacking?
+          <li><a class="glink" href="#usage">
+              How to use clickjacker.live to test websites?
           </a></li>
-          <li><a class="glink" href="#basic-clickjacking-attack">
-              Making a basic clickjacking attack
+          <li><a class="glink" href="#WordPress-websites">
+              Testing WordPress websites
+          </a></li>
+          <li><a class="glink" href="#local-websites">
+              Testing local-host websites 
           </a></li>
   </p>
 
-  <h2 id="whats-ClickJacking">What is click-jacking?</h2>
+  <h2 id="usage">How to use this tool?</h2>
 
-  <p>Click Jacking is a UI-based attack in which the user is fooled into clicking on functional content from some other website hidden by the attacker on a different website. let's understand this with an example: 
-      <br> <br>
-      Imagine, you're searching for a website to help with your homework
-      You click on what seems like a helpful resource, and when clicked it secretly posts a promotional message on your social media profile without even letting you know about it, this deceptive tactic is known as a clickjacking attack.
+  <p> 
+      Our tool is designed to scan and analyze multiple websites and web applications for clickjacking vulnerabilities that may compromise the security and user trust of the platform. 
+    <br> <br>
+    To use our tool to test websites for clickjacking vulnerabilities you will need to provide the website's URL, on which we are going to perform tests, it's recommended to give the exact URL of the page, to get exact results.
+    <br> <br>
+    When you have the exact URL of the page you want to test, it's finally time to test the page.
+    <br> <br>
+    To test the page, follow these 3 simple steps:
+    <br> <br>
+    Step 1 - Go to <a class="glink" href="../">Clickjacker.live</a>. <br>
+    Step 2 - Put your URL in the input box. <br>
+    Step 3 - Hit enter or press the button that says "check !".
+    <br> <br>
+    Now its time to observe if the page you provided loads in the "iFrame" below or not, you'll also be provided with extra minor information like "IP address" or "X-frame testing" and so on but the main thing is to observe if you're provided URL loads inside the iFrame or not if it doesn't load in the iFrame below its safe from clickjacking attacks but if it does then it's vulnerable to clickjacking attacks and you need to pay attention to it.
   </p>
+
+
+
+
+
   <div class="img">
-      <img src="../assets/jacking.webp" width="90%" alt="What is click-jacking?">
+      <img class="landscape" src="../assets/man using tablet.webp" width="90%" alt="What is click-jacking?">
   </div>
-
-  <h2 id="basic-clickjacking-attack">Making a basic clickjacking attack</h2>
-  <p>Most of the attackers use CSS to stack layers up on another layer loaded in an iframe, which tricks a user into clicking the iframe hidden beneath.
-  Here's a code demo of click-jacking Attack:-
-
+   <br>
+  <h2 id="WordPress-websites">Testing WordPress websites</h2>
+  <p>As I mentioned earlier our tool is specialized in testing any type of website and web applications for clickjacking vulnerabilities and it includes WordPress websites as well, you can feel free to use our tool to test any WordPress websites or any other web content management system (WCMS).
+    <br> <br>
+    Testing WordPress or any other web content management system (WCMS) websites is not different from testing any other plain HTML website, you'll follow the same steps to test a WordPress website which you take to test a normal HTML website. 
+  </p>
+  <br> <br>
+  <h2 id="local-websites">Testing local-host websites</h2>
+  <p>
+    Testing a website that isn't yet live may seem like an unusual task, but our skilled developers have found a way to do that. By testing local-host websites, we can identify potential vulnerabilities before the site goes live, allowing us to take action on any issue before it becomes a problem.
+    <br> <br>
+This feature is mostly popular among web developers and content writers who use services like WordPress or other web content management systems (WCMS). With this feature, they can now thoroughly check their websites for any security flaws, ensuring that their content is safe and secure for their users.
+<br> <br>
+You can test any localhost the same way you test any other website, with the website's localhost, which is usually "http://127.0.0.1:5500".
+    <br> <br>
+    <a class="glink" href="#"onclick="window.scroll(0, 0);">back to top</a>
   </p>
         
-        <pre class="code">
-            <code class="html">
-&lt;html&gt;
-&lt;head&gt;
-    &lt;style&gt;
-        #attacked_Site {
-            position: relative;
-            width: 128px;
-            height: 128px;
-            opacity: 0.00001;
-            z-index: 2;
-        }
-        #trap_site {
-            position: absolute;
-            width: 300px;
-            height: 400px;
-            z-index: 1;
-        }
-    &lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;div id="trap_site"&gt;
-    &lt;p&gt; <span class="white">Click me to get a reward</span>  &lt;/p&gt;
-    &lt;/div&gt;
-    &lt;iframe id="attacked_Site" src="https://example.com"&gt;
-    &lt;/iframe&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</code>
-        </pre>
-        <p>
-          Hope you found this helpful!
-If you want to test your site's security against clickjacking attacks or you want to make sure that your site isn't at risk,
-you can check that here - <a class="glink" href="../index.html">2023 FREE Click Jacking tester</a>
-        </p>
+        
  
     </div>
 

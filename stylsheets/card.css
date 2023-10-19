@@ -72,7 +72,7 @@ body.toggle .grid * {
 .card {
     max-width: 30vw;
     width: 18rem;
-    background-color: var(--background-color);
+    background-color: var(--background-color) !important;
     box-shadow: 0px var(--card-box-shadow-1-y) var(--card-box-shadow-1-blur) var(--card-box-shadow-1), 0px var(--card-box-shadow-2-y) var(--card-box-shadow-2-blur) var(--card-box-shadow-2), 0 0 0 1px var(--card-border-color);
     padding: 56px 16px 16px 16px;
     border-radius: 15px;

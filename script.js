@@ -29,8 +29,10 @@ const getSessionStorageInputValue = () => {
 const checkJack = () => {
   shareBtn.textContent = 'Share results';
   const inputValue = inpt.value.trim();
+
   // Ensure the URL is clean without URL encoding
   url = inputValue;
+
   if (url !== '') {
     vlnTxt.classList.remove('none');
     resultsDiv.classList.remove('none');
@@ -53,31 +55,43 @@ const checkJack = () => {
     const cleanURL = (window.location.origin + window.location.pathname + '?url=' + url).toLowerCase().replace(/\/+$/, '');
     history.pushState(null, '', cleanURL);
 
-
     document.getElementById('frame').onload = function () {
       secFrame.classList.remove('loading');
-    };
+    }
   } else {
     alert('Enter a URL');
   }
 };
 
 
-shareBtn.addEventListener('click', async () => {
-  shareBtn.textContent = 'Copying...';
-  try {
-    await navigator.clipboard.writeText(''); // Empty write to trigger permission prompt
-    const currentURL = new URL(window.location.href);
-    const inputValue = inpt.value.trim();
-    currentURL.searchParams.set('url', inputValue);
-    await navigator.clipboard.writeText(currentURL.toString());
-    shareBtn.textContent = 'Copied ✔';
-  } catch (error) {
-    console.error('Failed to copy URL: ', error);
-    shareBtn.textContent = 'Copy Failed';
+shareBtn.addEventListener('click', () => {
+  shareBtn.textContent = 'Copied ✔';
+  if (!navigator.clipboard) {
+    console.error("Clipboard API not available in this browser");
+    return;
   }
-});
 
+  // Get the current URL, including queries
+  const currentURL = window.location.href;
+
+  // Ask for permission to access the clipboard
+  navigator.clipboard.writeText(currentURL)
+    .then(() => {
+      console.log("URL copied to clipboard: " + currentURL);
+    })
+    .catch((error) => {
+      console.error("Failed to copy URL to clipboard: " + error);
+    });
+
+
+
+
+
+
+
+
+    
+});
 checkBtn.addEventListener('click', checkJack);
 inpt.addEventListener('keyup', (event) => {
   if (event.key === 'Enter') {
