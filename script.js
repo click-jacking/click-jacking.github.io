@@ -34,6 +34,10 @@ const checkJack = () => {
   url = inputValue;
 
   if (url !== '') {
+    secFrame.classList.add('loading');
+    secFrame.classList.add('container-100');
+      secFrame.innerHTML = `<iframe src="${url}" id="frame" frameborder="0"></iframe>`;
+    
     vlnTxt.classList.remove('none');
     resultsDiv.classList.remove('none');
     shareBtn.classList.remove('none');
@@ -42,14 +46,7 @@ const checkJack = () => {
     timeDate();
     performCspHeaderTest(url);
     performXFrameOptionsTest(url);
-    const iframe = secFrame.querySelector('iframe');
-    if (iframe) {
-      secFrame.innerHTML = `<iframe src="${url}" id="frame" frameborder="0"></iframe>`;
-    } else {
-      secFrame.innerHTML = `<iframe src="${url}" id="frame" frameborder="0"></iframe>`;
-    }
-    secFrame.classList.add('loading');
-    secFrame.classList.add('container-100');
+    
 
         // Remove trailing slashes and convert to lowercase
     const cleanURL = (window.location.origin + window.location.pathname + '?url=' + url).toLowerCase().replace(/\/+$/, '');
