@@ -38,14 +38,15 @@ const checkJack = () => {
   
      
   if (url !== '') {
-    vlnTxt.classList.remove('none');
-    resultsDiv.classList.remove('none');
-    shareBtn.classList.remove('none');
-    secFrame.innerHTML = '';
+secFrame.innerHTML = '';
 secFrame.classList.add('loading');
     secFrame.classList.add('container-100');
       secFrame.innerHTML = `<iframe src="${url}" id="frame" frameborder="0"></iframe>`;
-
+ 
+    vlnTxt.classList.remove('none');
+    resultsDiv.classList.remove('none');
+    shareBtn.classList.remove('none');
+    
     fetchIPAddress(url);
     timeDate();
     performCspHeaderTest(url);
