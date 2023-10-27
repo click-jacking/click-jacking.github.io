@@ -36,15 +36,16 @@ const checkJack = () => {
   url = inputValue;
 
   
-secFrame.classList.add('loading');
-    secFrame.classList.add('container-100');
-      secFrame.innerHTML = `<iframe src="${url}" id="frame" frameborder="0"></iframe>`;
      
   if (url !== '') {
     vlnTxt.classList.remove('none');
     resultsDiv.classList.remove('none');
     shareBtn.classList.remove('none');
     secFrame.innerHTML = '';
+secFrame.classList.add('loading');
+    secFrame.classList.add('container-100');
+      secFrame.innerHTML = `<iframe src="${url}" id="frame" frameborder="0"></iframe>`;
+
     fetchIPAddress(url);
     timeDate();
     performCspHeaderTest(url);
